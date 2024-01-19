@@ -12,27 +12,36 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      # Check out the repository to access its content.
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: latest
+      # Set up Terraform with the specified version.
 
     - name: Configure AWS credentials
       run: |
         mkdir -p ~/.aws
         echo -e "[default]\naws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}\naws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/credentials
+        # Configuration of AWS credentials. This step sets up the necessary AWS access.
 
     - name: Terraform Init
       run: terraform init
+      # Initialize Terraform. Downloads necessary providers and initializes the working directory.
 
     - name: Terraform Plan
       run: terraform plan
+      # Execute Terraform plan to check changes before applying.
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
       if: success()  # Only apply if the plan was successful
+      # Apply Terraform changes. The '-auto-approve' flag skips the interactive approval prompt.
 
     - name: Notify on Failure
       if: failure()
-      run: echo "Terraform deployment failed. Check the logs for details."  # Integrate with notification service if needed
+      run: echo "Terraform deployment failed. Check the logs for details."  
+      # Notify on failure. 
+      # Integrate with notification service if needed, but fon't know how to do that bit yet! 
+        # Maybe using a webhook URL?
