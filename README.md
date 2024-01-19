@@ -1,55 +1,73 @@
-Terraform Technical Task
-This guide walks you through deploying an AWS infrastructure using Terraform, including a Virtual Private Cloud (VPC), subnets, an EC2 instance with Nginx, and associated security group configurations. The deployment is automated using GitHub Actions.
+# Valid8Me Terraform Technical Task 
 
-Prerequisites
-Before starting, make sure you have the following:
+This guide outlines the steps to deploy AWS infrastructure using Terraform and automate the process with GitHub Actions. The infrastructure includes a VPC, subnets, an EC2 instance running Nginx, and associated security groups.
 
-Terraform: Install Terraform locally by following the instructions here.
-AWS Access Credentials: Obtain the AWS Access Key ID and Secret Access Key.
+## Repository Information
 
-Getting Started
-Step 1: Clone the Repository
+- **Repository URL:** [https://github.com/HarryAllenCodeRepo/TechnicalTest](https://github.com/HarryAllenCodeRepo/TechnicalTest)
+
+## Prerequisites
+
+Before starting the deployment process, ensure you have the following:
+
+- [Terraform](https://www.terraform.io/downloads.html) installed on your local machine.
+- AWS credentials with appropriate permissions. You can set up these credentials in the GitHub repository's secrets.
+
+## Steps
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/HarryAllenCodeRepo/TechnicalTest.git
 cd TechnicalTest
+```
+### 2. Set AWS Credentials in GitHub Secrets
+Go to your GitHub repository, navigate to "Settings" > "Secrets," and add the following secrets:
 
-Step 2: Update Variables
-Open the main.tf file and update the following variables in the variable block:
-  ami_id: Set to "ami-08c149f9b2ace933d" (Amazon Linux 2 AMI).
-  key_pair_name: Set to "my_key_pair_tech".
+- AWS_ACCESS_KEY_ID: AWS Access Key ID
 
-Step 3: GitHub Secrets
-Add the following GitHub Secrets to the repository:
-  AWS_ACCESS_KEY_ID: the AWS Access Key ID.
-  AWS_SECRET_ACCESS_KEY: the AWS Secret Access Key.
+- AWS_SECRET_ACCESS_KEY: AWS Secret Access Key
 
-Step 4: Local Terraform Setup
-Run the following commands to initialize and apply the Terraform configuration:
+### 3. Update Terraform Variables
+Open main.tf and update the following variables:
+
+- ami_id: Set to "ami-08c149f9b2ace933d" (Amazon Linux 2 AMI).
+
+- key_pair_name: Set to "my_key_pair_tech".
+
+- region: Set to "eu-west-1".
+
+### 4. Configure GitHub Actions Workflow
+Open .github/workflows/terraform_deploy.yml and make sure the workflow configuration is correct. Ensure the correct branch triggers the workflow.
+
+### 5. Initialize Terraform
+Run the following commands to initialize Terraform:
+
+```bash
 terraform init
-This command initializes the working directory, downloads the necessary providers, and sets up the Terraform environment.
+```
 
+### 6. Plan Terraform Changes
+
+```bash
 terraform plan
-Review the plan to ensure it aligns with your expectations.
+```
 
+### 7. Deploy Infrastructure
+
+```bash
 terraform apply -auto-approve
-This command applies the changes and deploys the infrastructure. Be cautious, as this will create AWS resources.
+```
 
-Step 5: GitHub Actions Workflow
-The GitHub Actions workflow is defined in the .github/workflows/terraform_deploy.yml file. This workflow is triggered on pushes to the master branch. It consists of the following steps:
-  Checkout Repository: Checks out the repository to access its content.
-  Set up Terraform: Uses the hashicorp/setup-terraform action to set up Terraform with the specified version.
-  Configure AWS Credentials: Creates the AWS credentials file using GitHub Secrets.
-  Terraform Init: Initializes Terraform in the GitHub Actions environment.
-  Terraform Plan: Executes Terraform plan to check changes before applying.
-  Terraform Apply: Applies Terraform changes. The -auto-approve flag skips the interactive approval prompt.
-  Notify on Failure: If the pipeline fails, it notifies about the failure.
+### 8. Review GitHub Actions Deployment
+Visit the "Actions" tab in your GitHub repository to monitor the progress of the deployment. This workflow will trigger on each push to the specified branch.
 
-Step 6: Monitor Deployment
-Navigate to the "Actions" tab in the GitHub repository (https://github.com/HarryAllenCodeRepo/TechnicalTest/actions) to monitor the progress of the deployment. The pipeline includes steps for Terraform initialization, planning, and applying.
+### 9. Cleanup (Optional)
+If needed, you can destroy the deployed infrastructure using the following command:
 
-Step 7: Verify Deployment
-After the pipeline completes successfully, log in to the AWS Management Console and verify the creation of the VPC, subnets, and EC2 instance.
+```bash
+terraform destroy -auto-approve
+```
+## Conclusion
+This guide provides a step-by-step walkthrough for deploying AWS infrastructure using Terraform and automating the process with GitHub Actions. Ensure all steps are followed carefully, and refer to the GitHub Actions workflow for detailed logs and notifications in case of issues.
 
-Troubleshooting
-If the deployment fails, check the GitHub Actions logs for error messages. Additionally, review the Terraform scripts for any misconfigurations/typos.
-
-For further assistance, refer to the Terraform documentation and GitHub Actions documentation.
