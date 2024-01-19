@@ -11,7 +11,7 @@ This guide outlines the steps to deploy AWS infrastructure using Terraform and a
 Before starting the deployment process, ensure you have the following:
 
 - [Terraform](https://www.terraform.io/downloads.html) installed on your local machine.
-- AWS credentials with appropriate permissions. You can set up these credentials in the GitHub repository's secrets.
+- AWS credentials with appropriate permissions. You can then add these credentials in the GitHub repository's secrets.
 
 ## Steps
 
