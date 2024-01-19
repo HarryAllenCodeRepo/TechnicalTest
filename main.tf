@@ -52,13 +52,14 @@ resource "aws_security_group" "web_server_security_group" {
   vpc_id = aws_vpc.my_vpc.id
 
   # Task 4: Security Group Rules
+  # Allow SSH traffic
   ingress {
     from_port = 22  # Allow SSH traffic
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow SSH access from any IP
   }
-
+  # Allow HTTP traffic
   ingress {
     from_port = 80  # Allow HTTP traffic
     to_port   = 80
