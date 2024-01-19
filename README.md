@@ -62,8 +62,13 @@ terraform apply -auto-approve
 Open .github/workflows/terraform_deploy.yml and make sure the workflow configuration is correct. Ensure the correct branch triggers the workflow.
 
 ### 8. Manually Trigger GitHub Actions Workflow
-If you want to explicitly trigger a workflow manually, you can create a dummy commit to the branch associated with the workflow, instead of having to make a change to any files. Here's how you can do it:
+If you want to explicitly trigger a workflow manually, you can create a dummy commit to the branch associated with the workflow, instead of having to make a change to any files. 
+Ensure you have navigated to the directory where the Terraform configuration files ( (main.tf, etc.) and Github Actions workflow files (terraform_deploy.yml) are located.
+Here's how you can do it:
 
+```bash
+cd /path/to/your/repository
+```
 ```bash
 git commit --allow-empty -m "Trigger GitHub Actions workflow"
 git push origin master
