@@ -101,7 +101,7 @@ resource "aws_instance" "nginx_server_instance" {
 
   subnet_id = aws_subnet.private_subnet_1.id  # Place the instance in the first private subnet
 
-  # Task 4: Security Group Rules
+  # Task 4: Security Group Rule
   vpc_security_group_ids = [aws_security_group.web_server_security_group.id]  # Associate with the web server security group
 
   user_data = <<-EOF
