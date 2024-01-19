@@ -1,5 +1,4 @@
-# TechnicalTest
-Valid8Me
+# TechnicalTest for Valid8Me
 Overview This project uses Terraform to deploy an AWS infrastructure that includes a Virtual Private Cloud (VPC) with public and private subnets, an EC2 instance running an Nginx web server, and necessary security groups. The deployment process is automated through a GitHub Actions pipeline for streamlined development.
 
 Project Structure The project is organized into the following directories:
