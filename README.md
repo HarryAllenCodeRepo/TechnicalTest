@@ -1,4 +1,4 @@
-# Valid8Me Terraform Technical Task 
+# Terraform Technical Task 
 
 This guide outlines the steps to deploy AWS infrastructure using Terraform and automate the process with GitHub Actions. The infrastructure includes a VPC, subnets, an EC2 instance running Nginx, and associated security groups.
 
