@@ -43,5 +43,4 @@ jobs:
       if: failure()
       run: echo "Terraform deployment failed. Check the logs for details."  
       # Notify on failure. 
-      # Integrate with notification service if needed, but fon't know how to do that bit yet! 
-        # Maybe using a webhook URL?
+      # Integrate with notification service if needed, maybe using a webhook URL?
