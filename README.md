@@ -22,7 +22,7 @@ git clone https://github.com/HarryAllenCodeRepo/TechnicalTest.git
 cd TechnicalTest
 ```
 ### 2. Set AWS Credentials in GitHub Secrets
-Go to your GitHub repository, navigate to "Settings" > "Secrets," and add the following secrets:
+Go to the GitHub repository, navigate to "Settings" > "Secrets," and add the following secrets:
 
 - AWS_ACCESS_KEY_ID: AWS Access Key ID
 
@@ -75,7 +75,7 @@ git push origin master
 ```
 
 ### 9. Review GitHub Actions Deployment
-Visit the "Actions" tab in your GitHub repository to monitor the progress of the deployment. This workflow will trigger on each push to the specified branch.
+Visit the "Actions" tab in the GitHub repository to monitor the progress of the deployment. This workflow will trigger on each push to the specified branch.
 
 ### 10. Cleanup (Optional)
 If needed, you can destroy the deployed infrastructure using the following command:
