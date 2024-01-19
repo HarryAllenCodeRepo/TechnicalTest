@@ -31,3 +31,8 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+      if: success()  # Only apply if the plan was successful
+
+    - name: Notify on Failure
+      if: failure()
+      run: echo "Terraform deployment failed. Check the logs for details."  # Integrate with notification service if needed
