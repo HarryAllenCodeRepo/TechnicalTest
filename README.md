@@ -28,8 +28,10 @@ Go to your GitHub repository, navigate to "Settings" > "Secrets," and add the fo
 
 - AWS_SECRET_ACCESS_KEY: AWS Secret Access Key
 
+Configure AWS with the same.
+
 ### 3. Update Terraform Variables
-Open main.tf and update the following variables:
+Open main.tf and update the following variables when appropriate (file sent with the needed updates):
 
 - ami_id: Set to "ami-08c149f9b2ace933d" (Amazon Linux 2 AMI).
 
@@ -37,32 +39,40 @@ Open main.tf and update the following variables:
 
 - region: Set to "eu-west-1".
 
-### 4. Configure GitHub Actions Workflow
-Open .github/workflows/terraform_deploy.yml and make sure the workflow configuration is correct. Ensure the correct branch triggers the workflow.
-
-### 5. Initialize Terraform
+### 4. Initialize Terraform
 Run the following commands to initialize Terraform:
 
 ```bash
 terraform init
 ```
 
-### 6. Plan Terraform Changes
+### 5. Plan Terraform Changes
 
 ```bash
 terraform plan
 ```
 
-### 7. Deploy Infrastructure
+### 6. Deploy Infrastructure
 
 ```bash
 terraform apply -auto-approve
 ```
 
-### 8. Review GitHub Actions Deployment
+### 7. Configure GitHub Actions Workflow
+Open .github/workflows/terraform_deploy.yml and make sure the workflow configuration is correct. Ensure the correct branch triggers the workflow.
+
+### 8. Manually Trigger GitHub Actions Workflow
+If you want to explicitly trigger a workflow manually, you can create a dummy commit to the branch associated with the workflow, instead of having to make a change to any files. Here's how you can do it:
+
+```bash
+git commit --allow-empty -m "Trigger GitHub Actions workflow"
+git push origin master
+```
+
+### 9. Review GitHub Actions Deployment
 Visit the "Actions" tab in your GitHub repository to monitor the progress of the deployment. This workflow will trigger on each push to the specified branch.
 
-### 9. Cleanup (Optional)
+### 10. Cleanup (Optional)
 If needed, you can destroy the deployed infrastructure using the following command:
 
 ```bash
