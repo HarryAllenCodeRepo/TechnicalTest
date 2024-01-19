@@ -1,3 +1,4 @@
+# Set-Up
 # Specify the provider and region
 provider "aws" {
   region = "eu-west-1"  # Set the AWS region to EU-West-1
